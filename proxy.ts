@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 
 export default function Proxy(request: NextRequest) {
 
+    // talvez pegar pelo localstorage para fazer o usuario quando clicar em sair apagar o localstorage e voltar ao login?
     const userId = request.cookies.get('userId')?.value
     const { pathname } = request.nextUrl
 

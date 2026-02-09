@@ -39,7 +39,6 @@ export default function Login() {
             <div className="w-80 h-90 border flex flex-col justify-center items-center rounded-lg">
                 <div className="flex flex-col justify-center items-center gap-3">
 
-
                     <h1 className="text-2xl">Login</h1>
 
                     <input className="border rounded-lg text-center p-2" type="text" name="name" value={name} placeholder="Nome de Usuário" onChange={e => setName(e.target.value)} id="name" />

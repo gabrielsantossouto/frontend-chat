@@ -10,6 +10,7 @@ export default function Register() {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [imageUrl, setImageUrl] = useState('')
     const router = useRouter()
 
 
@@ -17,12 +18,14 @@ export default function Register() {
         try {
             const send = await axios.post('http://localhost:3000/users', {
                 name: name,
-                email: email
+                email: email,
+                avatar: imageUrl
             })
 
             document.cookie = `userId=${send.data.id}; path=/`
             localStorage.setItem('userName', send.data.name)
             localStorage.setItem('userId', send.data.id)
+            localStorage.setItem('avatar', send.data.avatar)
 
             alert('Registro feito com sucesso!')
 
@@ -44,6 +47,8 @@ export default function Register() {
                     <h1 className="text-2xl">Registrar</h1>
 
                     <input className="border rounded-lg text-center p-2" type="text" name="name" value={name} placeholder="Nome de Usuário" onChange={e => setName(e.target.value)} id="name" />
+
+                    <input className="border rounded-lg text-center p-2" type="url" name="name" value={imageUrl} placeholder="URL Image" onChange={e => setImageUrl(e.target.value)} id="name" />
 
                     <input className="border rounded-lg text-center p-2" type="email" name="email" value={email} placeholder="E-mail" onChange={e => setEmail(e.target.value)} id="email" />
 

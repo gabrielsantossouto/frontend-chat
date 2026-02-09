@@ -1,7 +1,7 @@
 'use client'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+
 
 interface Comment {
   id: string
@@ -10,6 +10,7 @@ interface Comment {
   user: {
     id: string
     name: string
+    avatar: string
     email: string
   }
   createdAt: string
@@ -21,6 +22,7 @@ export default function Chat() {
   const [data, setData] = useState<Comment[]>([])
   const [texto, setTexto] = useState<string>('')
   const [name, setName] = useState<string>('')
+  const [urlImage, setUrlImage] = useState('')
 
 
   async function getData() {
@@ -37,6 +39,8 @@ export default function Chat() {
   useEffect(() => {
     const userName = localStorage.getItem('userName') || ''
     setName(userName)
+    const image = localStorage.getItem('avatar') || ''
+    setUrlImage(image)
     getData()
   }, [])
 
@@ -72,44 +76,43 @@ export default function Chat() {
       console.log(error)
     }
   }
-
-
-
+  
   return (
     <div>
-
-      <div className='flex flex-row justify-between m-1'>
-        <h1>Welcome to the Chat App {name} </h1>
+      
+      <div className='flex flex-row gap-2 mt-5 ml-4'>
+        <h1 className='font-bold text-[18px] text-[#dddddde3] '>Seja Bem-Vindo</h1>
+        <p className='font-bold text-[18px]'>{name}</p>
+        <img className='w-8 h-8 mr-3 mb-3 rounded-lg' src={urlImage || '../usericon.png'}/>
       </div>
-
       <div>
-        <h1 className='mt-5 ml-5 mb-2 font-bold text-center text-2xl'>Chat</h1>
-        <div>
-          <input className='border border-white p-5 placeholder-blue-100' placeholder='
+
+        <div className='mt-10 ml-4'>
+          <input className='border rounded-lg border-[#e6e6e69a] p-5 placeholder-[#e6e6e69a] h-20 font-semibold' placeholder='
           Texto' value={texto} onChange={e => setTexto(e.target.value)} type="text" name="texto" id="texto" />
-          <input type="button" value="Enviar" onClick={sendTexto} />
+          <input className='border rounded-lg p-5 ml-3 border-[#e6e6e69a] font-semibold' type="button" value="Enviar" onClick={sendTexto} />
         </div>
+
         <h1>
           {data.map((item) => (
             <div key={item.id}>
 
-              <div className='flex flex-col justify-center item-center border border-[#a8a8a86b] mt-5 rounded mb-5'>
-
-                <div className='ml-2 mt-5'>
-                  <p className='font-bold text-[20px]'>{item.user.name}</p>
+              <div className='flex flex-col justify-center item-center border border-[#a8a8a86b] w-300 ml-4 mt-10 rounded-lg mb-5'>
+                <div className='flex flex-row ml-3 mt-5'>
+                  <img className='w-8 h-8 mr-3 mb-3 rounded-lg' src={item.user.avatar} alt="" />  
+                  <p className='font-bold text-[18px]'>{item.user.name}</p>
                 </div>
 
-                <div className='ml-2 mb-5'>
-                  <p className='text-[18px]'>{item.content}</p>
-                  <div className='flex flex-col justify-center items-end mr-3'>
+                  <div className='flex flex-row items-end justify-between mr-3 mb-5 ml-3'>
+                    
+                    <p className='text-[18px]'>{item.content}</p>
 
                     <button onClick={() => deletarTexto(item.id, item.userId)}
-                      className='bg-red-700 p-0.5 rounded outline-1 cursor-pointer'>Deletar</button>
-
+                      className='bg-red-700 p-1 rounded-lg outline-1 cursor-pointer'>Deletar
+                    </button>
 
                   </div>
-                </div>
-
+            
               </div>
 
             </div>
