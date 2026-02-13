@@ -19,9 +19,9 @@ export default function Login() {
             const user = response.data
 
             document.cookie = `userId=${response.data.id}; path=/`
+            localStorage.setItem('avatar', response.data.avatar)
             localStorage.setItem('userName', response.data.name)
             localStorage.setItem('userId', response.data.id)
-
             // usa o useRouter para poder redirecionar melhor que usar o link do nextjs
             router.refresh()
             router.push('/chat')

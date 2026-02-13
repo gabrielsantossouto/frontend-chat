@@ -15,10 +15,19 @@ export default function Proxy(request: NextRequest) {
     if(userId && (pathname === '/login' || pathname === '/')) {
         return NextResponse.redirect(new URL('/chat', request.nextUrl))
     }
+    
+    // se nao tiver userId e ele estiver na raiz, redireciona para login
+    if(!userId && pathname === '/') {
+        return NextResponse.redirect(new URL('/login', request.url))
+    }
 
+    if(!userId && request.nextUrl.pathname.startsWith('/settings')){
+        return NextResponse.redirect(new URL('/login', request.url))
+    }
+    
 
 }
 
 export const config = {
-    matcher: ['/chat/:path*', '/', '/login']
+    matcher: ['/chat/:path*', '/:path*', '/login', '/settings']
 }
