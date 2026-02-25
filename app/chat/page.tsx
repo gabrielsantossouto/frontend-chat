@@ -1,6 +1,7 @@
 'use client'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 
 interface Comment {
@@ -47,6 +48,10 @@ export default function Chat() {
 
 
   async function sendTexto() {
+    if(!texto) {
+            return alert('Você não escreveu nada')
+        }
+
     try {
       const userId = localStorage.getItem('userId')
       const enviar = await axios.post('http://localhost:3000/comentarios', {
@@ -60,30 +65,20 @@ export default function Chat() {
     setTexto('')
   }
 
-  async function deletarTexto(id: string, usercomment: string) {
-    const userId = localStorage.getItem('userId')
 
-    if (userId !== usercomment) {
-      alert('Comentário não é seu')
-      return
-    }
-
-
-    try {
-      axios.delete(`http://localhost:3000/comentarios/${id}`)
-      getData()
-    } catch (error) {
-      console.log(error)
-    }
-  }
   
   return (
     <div>
       
-      <div className='flex flex-row gap-2 mt-5 ml-4'>
-        <h1 className='font-bold text-[18px] text-[#dddddde3] '>Seja Bem-Vindo</h1>
-        <p className='font-bold text-[18px]'>{name}</p>
-        <img className='w-8 h-8 mr-3 mb-3 rounded-lg' src={urlImage || '../usericon.png'}/>
+      <div className='flex flex-row gap-2 justify-between mt-5 ml-4'>
+        <div className='flex flex-row gap-2'>
+          <h1 className='font-bold text-[18px] text-[#dddddde3] '>Seja Bem-Vindo</h1>
+          <p className='font-bold text-[18px]'>{name}</p>
+        </div>
+        <div className='flex flex-row mr-3'>
+          <img className='w-8 h-8 mr-3 rounded-lg' src={urlImage || '../usericon.png'}/>
+          <Link href='/settings' ><img src="../iconeconfig.svg" className='w-8 cursor-pointer' alt="Icone de Configurações" /></Link>
+        </div>
       </div>
       <div>
 
@@ -107,9 +102,6 @@ export default function Chat() {
                     
                     <p className='text-[18px]'>{item.content}</p>
 
-                    <button onClick={() => deletarTexto(item.id, item.userId)}
-                      className='bg-red-700 p-1 rounded-lg outline-1 cursor-pointer'>Deletar
-                    </button>
 
                   </div>
             

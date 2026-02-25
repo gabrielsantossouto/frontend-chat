@@ -14,6 +14,10 @@ export default function Login() {
 
 
     async function fazerLogin() {
+        if(!name && !email) {
+            return alert('Você não escreveu nada')
+        }
+
         try {
             const response = await axios.post('http://localhost:3000/login', { email })
             const user = response.data
