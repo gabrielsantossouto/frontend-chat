@@ -79,8 +79,8 @@ interface Comment {
 
                 {data.map((item) => (
                     <div key={item.id}>
-                        <div className=" flex flex-row justify-between border border-white p-1 mt-3 ml-3 rounded-lg">
-                            <p>{item.content}</p>
+                        <div className="flex flex-row justify-between border border-white p-1 mt-3 ml-3 mr-3 rounded-lg">
+                            <p className="break-all">{item.content}</p>
                             <button onClick={() => deletarTexto(item.id)}
                                 className='bg-red-700 p-1 rounded-lg outline-1 cursor-pointer'>Deletar
                             </button>

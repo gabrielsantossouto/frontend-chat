@@ -84,7 +84,7 @@ export default function Chat() {
 
         <div className='mt-10 ml-4'>
           <input className='border rounded-lg border-[#e6e6e69a] p-5 placeholder-[#e6e6e69a] h-20 font-semibold' placeholder='
-          Texto' value={texto} onChange={e => setTexto(e.target.value)} type="text" name="texto" id="texto" />
+          Texto' maxLength={119} value={texto} onChange={e => setTexto(e.target.value)} type="text" name="texto" id="texto" />
           <input className='border rounded-lg p-5 ml-3 border-[#e6e6e69a] font-semibold' type="button" value="Enviar" onClick={sendTexto} />
         </div>
 
@@ -98,7 +98,7 @@ export default function Chat() {
                   <p className='font-bold text-[18px]'>{item.user.name}</p>
                 </div>
 
-                  <div className='flex flex-row items-end justify-between mr-3 mb-5 ml-3'>
+                  <div className='flex flex-row items-end justify-between mr-3 mb-5 ml-3 break-all'>
                     
                     <p className='text-[18px]'>{item.content}</p>
 
