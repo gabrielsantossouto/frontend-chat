@@ -54,7 +54,7 @@ interface Comment {
      async function deletarTudo() {
         const userId = localStorage.getItem('userId')
         try {
-            const deletartudo = await axios.delete(`https://backend-chat-production-dbf0.up.railway.app/comentarios/${userId}`)
+            const deletartudo = await axios.delete(`https://backend-chat-production-dbf0.up.railway.app/comentariosall/${userId}`)
             getData()
         } catch (error) {
             console.log(error)
