@@ -18,7 +18,7 @@ interface Comment {
 }
 
 
-    export default function Settings() {
+export default function Settings() {
 
     const [data, setData] = useState<Comment[]>([])
 
@@ -26,9 +26,10 @@ interface Comment {
         try {
             const userId = localStorage.getItem('userId') || ''
             const response = await axios.get(`https://backend-chat-production-dbf0.up.railway.app/user/${userId}`)
-            const conteudo = response.data
-            console.log(conteudo)
-            console.log(response)
+            const conteudo = response.data.comments || []
+
+            console.log("Comentários filtrados:", conteudo)
+
             setData(conteudo)
 
         } catch (error) {
@@ -51,7 +52,7 @@ interface Comment {
         getData()
     }, [])
 
-     async function deletarTudo() {
+    async function deletarTudo() {
         const userId = localStorage.getItem('userId')
         try {
             const deletartudo = await axios.delete(`https://backend-chat-production-dbf0.up.railway.app/comentariosall/${userId}`)
