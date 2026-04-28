@@ -28,7 +28,7 @@ export default function Chat() {
 
   async function getData() {
     try {
-      const response = await axios.get<Comment[]>('http://localhost:3000/comentarios')
+      const response = await axios.get<Comment[]>('https://backend-chat-production-dbf0.up.railway.app/comentarios')
       const conteudo = response.data
       setData(conteudo)
 
@@ -54,7 +54,7 @@ export default function Chat() {
 
     try {
       const userId = localStorage.getItem('userId')
-      const enviar = await axios.post('http://localhost:3000/comentarios', {
+      const enviar = await axios.post('https://backend-chat-production-dbf0.up.railway.app/comentarios', {
         content: texto,
         userId: userId
       })

@@ -2,7 +2,6 @@
 import Link from "next/link"
 import axios from 'axios'
 import { useState, useEffect } from "react"
-import Modal from "@/components/modal"
 
 interface Comment {
     id: string
@@ -26,7 +25,7 @@ interface Comment {
     async function getData() {
         try {
             const userId = localStorage.getItem('userId') || ''
-            const response = await axios.get(`http://localhost:3000/comentarios/${userId}`)
+            const response = await axios.get(`https://backend-chat-production-dbf0.up.railway.app/comentarios/${userId}`)
             const conteudo = response.data
             console.log(conteudo)
             console.log(response)
@@ -40,7 +39,7 @@ interface Comment {
     async function deletarTexto(id: string) {
 
         try {
-            await axios.delete(`http://localhost:3000/comentarios/${id}`)
+            await axios.delete(`https://backend-chat-production-dbf0.up.railway.app/comentarios/${id}`)
             getData()
         } catch (error) {
             console.log(error)
@@ -55,7 +54,7 @@ interface Comment {
      async function deletarTudo() {
         const userId = localStorage.getItem('userId')
         try {
-            const deletartudo = await axios.delete(`http://localhost:3000/comentariosall/${userId}`)
+            const deletartudo = await axios.delete(`https://backend-chat-production-dbf0.up.railway.app/comentarios/${userId}`)
             getData()
         } catch (error) {
             console.log(error)

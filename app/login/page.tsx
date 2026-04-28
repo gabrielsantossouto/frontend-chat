@@ -19,7 +19,7 @@ export default function Login() {
         }
 
         try {
-            const response = await axios.post('http://localhost:3000/login', { email })
+            const response = await axios.post('https://backend-chat-production-dbf0.up.railway.app/login', { email })
             const user = response.data
 
             document.cookie = `userId=${response.data.id}; path=/`

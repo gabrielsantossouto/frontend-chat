@@ -16,7 +16,7 @@ export default function Register() {
 
     async function fazerRegister() {
         try {
-            const send = await axios.post('http://localhost:3000/users', {
+            const send = await axios.post('https://backend-chat-production-dbf0.up.railway.app/users', {
                 name: name,
                 email: email,
                 avatar: imageUrl
