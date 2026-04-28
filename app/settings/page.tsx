@@ -25,7 +25,7 @@ interface Comment {
     async function getData() {
         try {
             const userId = localStorage.getItem('userId') || ''
-            const response = await axios.get(`https://backend-chat-production-dbf0.up.railway.app/comentarios/${userId}`)
+            const response = await axios.get(`https://backend-chat-production-dbf0.up.railway.app/user/${userId}`)
             const conteudo = response.data
             console.log(conteudo)
             console.log(response)
