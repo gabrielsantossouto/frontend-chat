@@ -2,6 +2,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import io from 'socket.io-client'
+
 
 
 interface Comment {
@@ -18,6 +20,8 @@ interface Comment {
   updatedAt: string
 }
 
+
+const socket = io('https://backend-chat-production-dbf0.up.railway.app')
 
 export default function Chat() {
   const [data, setData] = useState<Comment[]>([])
@@ -38,11 +42,19 @@ export default function Chat() {
   }
 
   useEffect(() => {
+    getData()
+    socket.on('chat message', (novoComentario) => {
+      console.log(novoComentario)
+      setData((mensagensAnteriores) => [...mensagensAnteriores, novoComentario])
+    })
     const userName = localStorage.getItem('userName') || ''
     setName(userName)
     const imagem = localStorage.getItem('avatar') || ''
     setUrlImage(imagem)
-    getData()
+    
+    return () => {
+      socket.off('chat message')
+    }
   }, [])
 
 
@@ -58,9 +70,13 @@ export default function Chat() {
         content: texto,
         userId: userId
       })
+
+      socket.emit('chat message', enviar.data)
+
     } catch (error) {
       alert('Você não está logado!')
     }
+    
     getData()
     setTexto('')
   }
