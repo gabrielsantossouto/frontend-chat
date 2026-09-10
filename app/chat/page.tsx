@@ -110,8 +110,8 @@ export default function Chat() {
 
               <div className='flex flex-col justify-center item-center border border-[#a8a8a86b] w-300 ml-4 mt-10 rounded-lg mb-5'>
                 <div className='flex flex-row ml-3 mt-5'>
-                  <img className='w-8 h-8 mr-3 mb-3 rounded-lg' src={item.user.avatar}alt="" />  
-                  <p className='font-bold text-[18px]'>{item.user.name}</p>
+                  <img className='w-8 h-8 mr-3 mb-3 rounded-lg' src={item.user?.avatar}alt="" />  
+                  <p className='font-bold text-[18px]'>{item.user?.name}</p>
                 </div>
 
                   <div className='flex flex-row items-end justify-between mr-3 mb-5 ml-3 break-all'>
