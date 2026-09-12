@@ -98,18 +98,18 @@ export default function Chat() {
       </div>
       <div>
 
-        <div className='mt-10 ml-4'>
-          <input className='border rounded-lg border-[#e6e6e69a] p-5 placeholder-[#e6e6e69a] h-20 font-semibold' placeholder='
+        <div className='mt-10 lg:ml-2'>
+          <input className='border rounded-lg w-60 lg:w-[95%] lg:mb-1 h-15 fixed bottom-0 border-[#e6e6e69a] p-5 placeholder-[#e6e6e69a] font-semibold' placeholder='
           Texto' maxLength={119} value={texto} onChange={e => setTexto(e.target.value)} type="text" name="texto" id="texto" />
-          <input className='border rounded-lg p-5 ml-3 border-[#e6e6e69a] font-semibold' type="button" value="Enviar" onClick={sendTexto} />
+          <input className='border w-20 fixed bottom-0 left-57 lg:left-[95%] lg:mb-1 h-15 rounded-lg p-2 ml-3 border-[#e6e6e69a] font-semibold' type="button" value="Enviar" onClick={sendTexto} />
         </div>
 
         <h1>
           {data.map((item) => (
             <div key={item.id}>
 
-              <div className='flex flex-col justify-center item-center border border-[#a8a8a86b] w-300 ml-4 mt-10 rounded-lg mb-5'>
-                <div className='flex flex-row ml-3 mt-5'>
+              <div className='flex flex-col justify-center item-center border border-[#a8a8a86b] w-80 lg:w-[95%] lg:ml-4 lg:mt-10 rounded-lg lg:mb-5'>
+                <div className='flex flex-row ml-3 mt-4'>
                   <img className='w-8 h-8 mr-3 mb-3 rounded-lg' src={item.user?.avatar}alt="" />  
                   <p className='font-bold text-[18px]'>{item.user?.name}</p>
                 </div>
