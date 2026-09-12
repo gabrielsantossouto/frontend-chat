@@ -1,6 +1,6 @@
 'use client'
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import io from 'socket.io-client'
 
@@ -28,6 +28,7 @@ export default function Chat() {
   const [texto, setTexto] = useState<string>('')
   const [name, setName] = useState<string>('')
   const [urlImage, setUrlImage] = useState('')
+  const messagesEndRef = useRef<HTMLDivElement>(null)
 
 
   async function getData() {
@@ -56,6 +57,10 @@ export default function Chat() {
       socket.off('chat message')
     }
   }, [])
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [data])
 
 
 
@@ -141,6 +146,7 @@ export default function Chat() {
             </div>
           ))}
         </h1>
+        <div ref={messagesEndRef} />
       </div>
     </div>
   )
