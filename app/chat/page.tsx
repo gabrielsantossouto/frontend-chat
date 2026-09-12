@@ -84,7 +84,7 @@ export default function Chat() {
 
   
   return (
-    <div>
+    <div className='min-h-screen pb-24 sm:pb-28'>
       
       <div className='flex flex-row gap-2 justify-between mt-5 ml-4'>
         <div className='flex flex-row gap-2'>
@@ -98,17 +98,32 @@ export default function Chat() {
       </div>
       <div>
 
-        <div className='mt-10 lg:ml-2'>
-          <input className='border rounded-lg w-60 lg:w-[95%] lg:mb-1 h-15 fixed bottom-0 border-[#e6e6e69a] p-5 placeholder-[#e6e6e69a] font-semibold' placeholder='
-          Texto' maxLength={119} value={texto} onChange={e => setTexto(e.target.value)} type="text" name="texto" id="texto" />
-          <input className='border w-20 fixed bottom-0 left-57 lg:left-[95%] lg:mb-1 h-15 rounded-lg p-2 ml-3 border-[#e6e6e69a] font-semibold' type="button" value="Enviar" onClick={sendTexto} />
+        <div className='fixed bottom-0 left-0 w-full bg-black border-t border-[#e6e6e69a] px-3 py-3 sm:px-6 sm:py-4'>
+          <div className='max-w-4xl mx-auto flex items-center gap-2 sm:gap-3 w-full'>
+            <input
+              className='flex-1 min-w-0 border rounded-lg h-12 sm:h-14 border-[#e6e6e69a] p-3 sm:p-5 placeholder-[#e6e6e69a] font-semibold'
+              placeholder='Texto'
+              maxLength={119}
+              value={texto}
+              onChange={e => setTexto(e.target.value)}
+              type="text"
+              name="texto"
+              id="texto"
+            />
+            <input
+              className='shrink-0 border w-20 sm:w-24 h-12 sm:h-14 rounded-lg p-2 border-[#e6e6e69a] font-semibold'
+              type="button"
+              value="Enviar"
+              onClick={sendTexto}
+            />
+          </div>
         </div>
 
         <h1>
           {data.map((item) => (
             <div key={item.id}>
 
-              <div className='flex flex-col justify-center item-center border border-[#a8a8a86b] w-80 lg:w-[95%] lg:ml-4 lg:mt-10 rounded-lg lg:mb-5'>
+              <div className='flex flex-col justify-center item-center border border-[#a8a8a86b] mt-5 min-w-80 lg:w-[95%] lg:ml-4 lg:mt-10 rounded-lg lg:mb-5'>
                 <div className='flex flex-row ml-3 mt-4'>
                   <img className='w-8 h-8 mr-3 mb-3 rounded-lg' src={item.user?.avatar}alt="" />  
                   <p className='font-bold text-[18px]'>{item.user?.name}</p>
