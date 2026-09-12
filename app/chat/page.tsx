@@ -123,7 +123,7 @@ export default function Chat() {
           {data.map((item) => (
             <div key={item.id}>
 
-              <div className='flex flex-col justify-center item-center border border-[#a8a8a86b] mt-5 min-w-80 max-w-[95%] ml-5 lg:w-[90%] lg:ml-4 lg:mt-10 rounded-lg lg:mb-5'>
+              <div className='flex flex-col justify-center item-center border border-[#a8a8a86b] mt-5 min-w-80 max-w-[95%] ml-2 lg:w-[90%] lg:ml-4 lg:mt-10 rounded-lg lg:mb-5'>
                 <div className='flex flex-row ml-3 mt-4'>
                   <img className='w-8 h-8 mr-3 mb-3 rounded-lg' src={item.user?.avatar}alt="" />  
                   <p className='font-bold text-[18px]'>{item.user?.name}</p>
